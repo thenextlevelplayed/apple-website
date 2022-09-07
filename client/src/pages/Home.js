@@ -1,28 +1,24 @@
 import '../css/style.css';
 // import {Helmet} from "react-helmet";
-// import main from "../../src/js/main";
+import main from "../../src/js/main";
 
-function abc(){
-    const selectElement= (element) => document.querySelector(element);
 
-    selectElement('.mobile-meun').addEventListener('click' ,()=>{
-        selectElement('header').classList.toggle('active')
-    });
-}
-// abc();
+    
+
 
 
 const Home = () => {
-    abc()
 
+
+ 
     return(
 <body>
    <header>
     <div class="container">
         <nav class="nav">
-            <ul class="nav-list nav-list-mobile">
+            <ul class="nav-list nav-list-mobile" >
                 <li class="nav-item">
-                    <div class="mobile-meun">
+                    <div class="mobile-meun" >
                         <span class="line line-top"></span>
                         <span class="line line-bottom"></span>
                     </div>
@@ -451,7 +447,7 @@ const Home = () => {
         </ul>
     </div>
 
-    <buttom class="pasue-play">
+    {/* <buttom class="pasue-play">
         <svg viewBox="0 0 85 85">
             <defs>
                 <g id="pause-icon">
@@ -465,7 +461,7 @@ const Home = () => {
                 </g>
             </defs>
         </svg>
-    </buttom>
+    </buttom> */}
    </section>
 
    <footer class="globalfooter">
@@ -488,12 +484,9 @@ const Home = () => {
 </body>
 
   );
-  
 };
 
 // abc();
-
-
 
 
 

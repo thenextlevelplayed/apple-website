@@ -11,7 +11,7 @@ html{
     font-size: 10px;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif,"SF Pro Display";
     /* font-family: 'San Francisco', sans-serif; */
-    src: url("SanFranciscoFont-master/SanFranciscoDisplay-Black.otf") format("opentype");
+    /* src: url("SanFranciscoFont-master/SanFranciscoDisplay-Black.otf") format("opentype"); */
     /* src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff"); */
     overflow-x: hidden;
 }
@@ -71,25 +71,25 @@ header{
 .nav-link-apple{
     width: 1.6rem;
     height: 4.4rem;
-    background: url("images/icons/apple.svg") center no-repeat;
+    background: url("../../public/images/icons/apple.svg") center no-repeat;
     background-size: 1.36rem;
 }
 
 .nav-link-bag{
     width: 1.4rem;
     height: 4.4rem;
-    background: url("images/icons/bag.svg") center no-repeat;
+    background: url("../../public/images/icons/bag.svg") center no-repeat;
 }
 
 .nav-link-search{
     width: 1.5rem;
     height: 4.4rem;
-    background: url("images/icons/search.svg") center no-repeat;
+    background: url("../../public/images/icons/search.svg") center no-repeat;
 }
 /* iphone 13 section */
 .iphone-13{
-    /* background: url("images/hero/iphone-11-pro/iphone_11_pro_large.jpg"); */
-    background: url("images/hero/iphone-13/iphone-13-large.jpg");
+    /* background: url("../../public/images/hero/iphone-11-pro/iphone_11_pro_large.jpg"); */
+    background: url("../../public/images/hero/iphone-13/iphone-13-large.jpg");
     margin-top: 5rem;
 }
 
@@ -136,7 +136,7 @@ header{
 
 /* iphone 13 pro section */
 .iphone-13-pro{
-    background: url("images/hero/iphone-13-pro/iphone-13-pro-large.jpg");
+    background: url("../../public/images/hero/iphone-13-pro/iphone-13-pro-large.jpg");
 }
 
 .title-dark{
@@ -160,7 +160,7 @@ header{
 
 /* back-to-school-2022 section */
 .back-to-school-2022{
-    background: url("/images/hero/back-to-school-2022/macbook-pro-13-large.jpg") center no-repeat;
+    background: url("../../public/images/hero/back-to-school-2022/macbook-pro-13-large.jpg") center no-repeat;
     background-size: auto 7.8rem;
     margin-top: 0;
     /* padding-bottom: 1px; */
@@ -235,59 +235,59 @@ header{
 
 /* macbook-air */
 .macbook-air{
-    background: url("images/hero/macbook-air/mac-book-air-large.jpg") center no-repeat;
+    background: url("../../public/images/hero/macbook-air/mac-book-air-large.jpg") center no-repeat;
     background-size: auto 50rem;
     background-position: bottom center;
     background-color:#fbfbfd;;
 }
 
 .macbook-air .collection-title .collection-title-word{
-    background: url("images/hero/m2/m2-large.jpg") center no-repeat;
+    background: url("../../public/images/hero/m2/m2-large.jpg") center no-repeat;
     background-size: auto ;
 }
 
 
 /* macbook-pro-13 */
 .macbook-pro-13{
-    background: url("images/hero/macbook-pro-13/mac-book-pro-13-large.jpg") center no-repeat;
+    background: url("../../public/images/hero/macbook-pro-13/mac-book-pro-13-large.jpg") center no-repeat;
     background-size: auto 40rem;
     background-color:#000;;
 }
 
 .macbook-pro-13 .collection-title .collection-title-word{
-    background: url("images/hero/m2/m2-black-large.jpg") center no-repeat;
+    background: url("../../public/images/hero/m2/m2-black-large.jpg") center no-repeat;
 }
 
 /* watch */
 .watch .collection-title .collection-title-heading{
     height: 10rem;
-    background: url("images/hero/watch/watch-series-7.jpg") no-repeat center;
+    background: url("../../public/images/hero/watch/watch-series-7.jpg") no-repeat center;
 }
 .watch{
-    background: url("images/hero/watch/watch-large.jpg") center no-repeat;
+    background: url("../../public/images/hero/watch/watch-large.jpg") center no-repeat;
     background-color:#fbfbfd;;
 }
 
 /* ipad-air */
 .ipad-air .collection-title .collection-title-heading{
     height: 10rem;
-    background: url("images/hero/ipadair/ipadair-word.jpg") center no-repeat;
+    background: url("../../public/images/hero/ipadair/ipadair-word.jpg") center no-repeat;
 }
 
 .ipad-air{
-    background: url("images/hero/ipadair/ipadair-large.jpg") center no-repeat;
+    background: url("../../public/images/hero/ipadair/ipadair-large.jpg") center no-repeat;
     background-color: #000;
 }
 
 /* apple-pay */
 .apple-pay{
-    background: url("images/hero/apple-pay/apple-pay-large.jpg") no-repeat center;
+    background: url("../../public/images/hero/apple-pay/apple-pay-large.jpg") no-repeat center;
     background-size: auto;
 }
 
 /* apple-music */
 .apple-music{
-    background: url("images/hero/apple-music/apple-music.jpg") no-repeat center;
+    background: url("../../public/images/hero/apple-music/apple-music.jpg") no-repeat center;
     background-size: auto;
 }
 .collection-module{
@@ -318,47 +318,47 @@ header{
 }
 
 .item-1{
-    background: url("images/hero/item1/2500x1406.jpg") no-repeat center;
+    background: url("../../public/images/hero/item1/2500x1406.jpg") no-repeat center;
 }
 
 .item-2{
-    background: url("images/hero/item2/2500x1406.jpg") no-repeat center;
+    background: url("../../public/images/hero/item2/2500x1406.jpg") no-repeat center;
 }
 
 .item-3{
-    background: url("images/hero/item3/2500x1406.jpg") no-repeat center;
+    background: url("../../public/images/hero/item3/2500x1406.jpg") no-repeat center;
 }
 
 .item-4{
-    background: url("images/hero/item4/2500x1406.jpg") no-repeat center;
+    background: url("../../public/images/hero/item4/2500x1406.jpg") no-repeat center;
 }
 
 .item-5{
-    background: url("images/hero/item5/fnb__brvfy48gzsz6_large_2x.jpg") no-repeat center;
+    background: url("../../public/images/hero/item5/fnb__brvfy48gzsz6_large_2x.jpg") no-repeat center;
 }
 
 .item-6{
-    background: url("images/hero/item6/2500x1406.jpg") no-repeat center;
+    background: url("../../public/images/hero/item6/2500x1406.jpg") no-repeat center;
 }
 
 .item-7{
-    background: url("images/hero/item7/2500x1406.jpg") no-repeat center;
+    background: url("../../public/images/hero/item7/2500x1406.jpg") no-repeat center;
 }
 
 .item-8{
-    background: url("images/hero/item8/2500x1406.jpg") no-repeat center;
+    background: url("../../public/images/hero/item8/2500x1406.jpg") no-repeat center;
 }
 
 .item-9{
-    background: url("images/hero/item9/2500x1406.jpg") no-repeat center;
+    background: url("../../public/images/hero/item9/2500x1406.jpg") no-repeat center;
 }
 
 .item-10{
-    background: url("images/hero/item10/2500x1406.jpg") no-repeat center;
+    background: url("../../public/images/hero/item10/2500x1406.jpg") no-repeat center;
 }
 
 .item-11{
-    background: url("images/hero/item11/2500x1406.jpg") no-repeat center;
+    background: url("../../public/images/hero/item11/2500x1406.jpg") no-repeat center;
 }
 
 .item{
@@ -408,7 +408,7 @@ header{
 .play-button-icon{
     padding-left: 3rem;
     top:0;
-    background: url("images/hero/item7/play-button.png") no-repeat center;
+    background: url("../../public/images/hero/item7/play-button.png") no-repeat center;
     background-size: auto 15px;
 
 }
@@ -452,7 +452,7 @@ header{
 .previous{
     left: 0;
     z-index: 1000;
-    /* background: url("images/hero/item11/2500x1406.jpg") no-repeat center; */
+    /* background: url("../../public/images/hero/item11/2500x1406.jpg") no-repeat center; */
 }
 
 .next{
@@ -598,9 +598,7 @@ header{
     border-bottom: 1px solid var(--footer-border-color);
 }
 
-.grid-5-columns{
 
-}
 
 .gf-nav-title li:nth-child(2n-1){
     display: none;
@@ -615,19 +613,19 @@ header{
 @media screen and (max-width: 1068px){
 
     .iphone-13{
-        background: url("images/hero/iphone-13/iphone-13-medium.jpg");
+        background: url("../../public/images/hero/iphone-13/iphone-13-medium.jpg");
         height: 64rem;
         background-size: 90rem;
         background-repeat: no-repeat;
     }
 
     .iphone-13-pro{
-        background: url("images/hero/iphone-13-pro/iphone-13-pro-medium.jpg");
+        background: url("../../public/images/hero/iphone-13-pro/iphone-13-pro-medium.jpg");
         height: 65rem;
     }
 
     .back-to-school-2022{
-        background-color: url("images/hero/back-to-school-2022/macbook-pro-13-medium.jpg");
+        background-color: url("../../public/images/hero/back-to-school-2022/macbook-pro-13-medium.jpg");
     }
     
     .hero{
@@ -674,37 +672,37 @@ header{
     }
     /* macbook-air */
     .macbook-air{
-        background: url("images/hero/macbook-air/mac-book-air-medium.jpg") center no-repeat;
+        background: url("../../public/images/hero/macbook-air/mac-book-air-medium.jpg") center no-repeat;
         background-size: auto 28rem;
         background-position: bottom center;
         background-color:#fbfbfd;;
     }
 
     .macbook-air .collection-title .collection-title-word{
-        background: url("images/hero/m2/m2-medium.jpg") center no-repeat;
+        background: url("../../public/images/hero/m2/m2-medium.jpg") center no-repeat;
         background-size: auto 3.8rem;
     }
     /* macbook-pro-13 */
     .macbook-pro-13{
-        background: url("images/hero/macbook-pro-13/mac-book-pro-13-medium.jpg") center no-repeat;
+        background: url("../../public/images/hero/macbook-pro-13/mac-book-pro-13-medium.jpg") center no-repeat;
         background-size: auto 23.9rem;
         background-position: bottom center;
         background-color:#000;;
     }
 
     .macbook-pro-13 .collection-title .collection-title-word{
-        background: url("images/hero/m2/m2-black-medium.jpg") center no-repeat;
+        background: url("../../public/images/hero/m2/m2-black-medium.jpg") center no-repeat;
         background-size: auto 3.8rem;
     }
 
     /* watch */
     .watch .collection-title .collection-title-heading{
         height: 4rem;
-        background: url("images/hero/watch/watch-series-7-medium.jpg") no-repeat center;
+        background: url("../../public/images/hero/watch/watch-series-7-medium.jpg") no-repeat center;
         background-size: auto 5rem;
     }
     .watch{
-        background: url("images/hero/watch/watch-medium.jpg") center no-repeat;
+        background: url("../../public/images/hero/watch/watch-medium.jpg") center no-repeat;
         background-color:#fbfbfd;;
         background-size: auto 33rem;
     }
@@ -712,19 +710,19 @@ header{
     /* ipad-air */
     .ipad-air .collection-title .collection-title-heading{
         height: 4rem;
-        background: url("images/hero/ipadair/ipadair-word-medium.jpg") center no-repeat;
+        background: url("../../public/images/hero/ipadair/ipadair-word-medium.jpg") center no-repeat;
         background-size: auto 5rem;
     }
 
     .ipad-air{
-        background: url("images/hero/ipadair/ipadair-medium.jpg") center no-repeat;
+        background: url("../../public/images/hero/ipadair/ipadair-medium.jpg") center no-repeat;
         background-color: #000;
         background-size: auto 33rem;
         margin-top: 0;
     }
     /* apple-pay */
     .apple-pay{
-        background: url("images/hero/apple-pay/apple-pay-medium.jpg") no-repeat center;
+        background: url("../../public/images/hero/apple-pay/apple-pay-medium.jpg") no-repeat center;
         height: 50rem;
         background-size: auto 100%;
         margin: 10px 6px;
@@ -732,7 +730,7 @@ header{
 
     /* apple-music */
     .apple-music{
-        background: url("images/hero/apple-music/apple-music-medium.jpg") no-repeat center;
+        background: url("../../public/images/hero/apple-music/apple-music-medium.jpg") no-repeat center;
         background-size: auto 100%;
         height: 50rem;
         margin: 10px 6px;
@@ -798,37 +796,37 @@ header{
     }
     /* macbook-air */
     .macbook-air{
-        background: url("images/hero/macbook-air/mac-book-air-small.jpg") center no-repeat;
+        background: url("../../public/images/hero/macbook-air/mac-book-air-small.jpg") center no-repeat;
         background-size: auto 28rem;
         background-position: bottom center;
         background-color:#fbfbfd;;
     }
 
     .macbook-air .collection-title .collection-title-word{
-        background: url("images/hero/m2/m2-small.jpg") center no-repeat;
+        background: url("../../public/images/hero/m2/m2-small.jpg") center no-repeat;
         background-size: auto 3.8rem;
     }
     /* macbook-pro-13 */
     .macbook-pro-13{
-        background: url("images/hero/macbook-pro-13/mac-book-pro-13-small.jpg") center no-repeat;
+        background: url("../../public/images/hero/macbook-pro-13/mac-book-pro-13-small.jpg") center no-repeat;
         background-size: auto 23.9rem;
         background-position: bottom center;
         background-color:#000;;
     }
 
     .macbook-pro-13 .collection-title .collection-title-word{
-        background: url("images/hero/m2/m2-black-small.jpg") center no-repeat;
+        background: url("../../public/images/hero/m2/m2-black-small.jpg") center no-repeat;
         background-size: auto 3.8rem;
     }
 
     /* watch */
     .watch .collection-title .collection-title-heading{
         height: 4rem;
-        background: url("images/hero/watch/watch-series-7-small.jpg") no-repeat center;
+        background: url("../../public/images/hero/watch/watch-series-7-small.jpg") no-repeat center;
         background-size: auto 5rem;
     }
     .watch{
-        background: url("images/hero/watch/watch-small.jpg") center no-repeat;
+        background: url("../../public/images/hero/watch/watch-small.jpg") center no-repeat;
         background-color:#fbfbfd;;
         background-size: auto 33rem;
     }
@@ -836,12 +834,12 @@ header{
     /* ipad-air */
     .ipad-air .collection-title .collection-title-heading{
         height: 4rem;
-        background: url("images/hero/ipadair/ipadair-word-small.jpg") center no-repeat;
+        background: url("../../public/images/hero/ipadair/ipadair-word-small.jpg") center no-repeat;
         background-size: auto 5rem;
     }
 
     .ipad-air{
-        background: url("images/hero/ipadair/ipadair-small.jpg") center no-repeat;
+        background: url("../../public/images/hero/ipadair/ipadair-small.jpg") center no-repeat;
         background-color: #000;
         background-size: auto 33rem;
         margin-top: 0;
@@ -849,7 +847,7 @@ header{
     /* apple-pay */
     .apple-pay{
         height: 51rem;
-        background: url("images/hero/apple-pay/apple-pay-small.jpg") no-repeat center;
+        background: url("../../public/images/hero/apple-pay/apple-pay-small.jpg") no-repeat center;
         background-size: auto 100%;
         background-position: bottom center;
         margin: 10px 0 10px ;
@@ -858,7 +856,7 @@ header{
     /* apple-music */
     .apple-music{
         height: 51.2rem;
-        background: url("images/hero/apple-music/apple-music-small.jpg") no-repeat center;
+        background: url("../../public/images/hero/apple-music/apple-music-small.jpg") no-repeat center;
         background-size: auto 100%;
     }
 
@@ -1079,21 +1077,21 @@ header{
 /* RWD small 前三個大圖 */
 @media screen and (max-width: 734px) and (min-width: 0px){
     .iphone-13{
-        background: url("images/hero/iphone-13/iphone-13-small.jpg");
+        background: url("../../public/images/hero/iphone-13/iphone-13-small.jpg");
         height: 50.5rem;
         background-size: 72rem;
         background-repeat: no-repeat;
     }
 
     .iphone-13-pro{
-        background: url("images/hero/iphone-13-pro/iphone-13-pro-small.jpg");
+        background: url("../../public/images/hero/iphone-13-pro/iphone-13-pro-small.jpg");
         height: 50rem;
         background-repeat: no-repeat;
 
     }
 
     .back-to-school-2022{
-        background-color: url("images/hero/back-to-school-2022/macbook-pro-13-small.jpg");
+        background-color: url("../../public/images/hero/back-to-school-2022/macbook-pro-13-small.jpg");
         margin-top: .5rem;
         height: 50rem;
         background-size: 120rem;

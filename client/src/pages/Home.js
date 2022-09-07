@@ -1,5 +1,10 @@
+import '../css/style.css';
+import {Helmet} from "react-helmet";
+import main from "../../src/js/main";
 const Home = () => {
-    return    <body> <h1>1223</h1>
+
+    return(
+<body>
    <header>
     <div class="container">
         <nav class="nav">
@@ -94,7 +99,7 @@ const Home = () => {
    <section class="hero back-to-school-2022">
     <div class="container">
         <div class="title title-dark">
-            <h2 class="title-heading" style="font-style: italic;">Get <span style="-webkit-text-stroke: #db749f ;color: #ca2166;">supercharged</span> for college.</h2>
+            <h2 class="title-heading">Get <span>supercharged</span> for college.</h2>
             <h3 class="title-sub-heading">Save&nbsp;on&nbsp;Mac&nbsp;or&nbsp;iPad. Plus&nbsp;get&nbsp;a&nbsp;gift&nbsp;card&nbsp;up&nbsp;to&nbsp;$150.</h3>
         </div>
         <div class="cta">
@@ -435,7 +440,7 @@ const Home = () => {
     </div>
 
     <buttom class="pasue-play">
-        <svg viewBox="0 0 85 85" style="display: none;">
+        <svg viewBox="0 0 85 85">
             <defs>
                 <g id="pause-icon">
                     <path d="M42.5,84.5c-23.16,0-42-18.84-42-42c0-23.16,18.84-42,42-42c23.16,0,42,18.84,42,42C84.5,65.66,65.66,84.5,42.5,84.5z M42.5,4.5c-20.95,0-38,17.05-38,38s17.05,38,38,38s38-17.05,38-38S63.45,4.5,42.5,4.5z"></path>
@@ -449,9 +454,9 @@ const Home = () => {
             </defs>
         </svg>
     </buttom>
-    </section>
+   </section>
 
-    <footer class="globalfooter">
+   <footer class="globalfooter">
     <div class="gf-content">
         <section>
             <ul>
@@ -464,12 +469,18 @@ const Home = () => {
         </section>
     </div>
 
-    </footer>
+</footer>
+
 
 
 </body>
 
+  );
+  main();
+}
+;
 
-  };
+
+
 
   export default Home;

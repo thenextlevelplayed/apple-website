@@ -1,7 +1,19 @@
 import '../css/style.css';
-import {Helmet} from "react-helmet";
-import main from "../../src/js/main";
+// import {Helmet} from "react-helmet";
+// import main from "../../src/js/main";
+
+function abc(){
+    const selectElement= (element) => document.querySelector(element);
+
+    selectElement('.mobile-meun').addEventListener('click' ,()=>{
+        selectElement('header').classList.toggle('active')
+    });
+}
+// abc();
+
+
 const Home = () => {
+    abc()
 
     return(
 <body>
@@ -476,9 +488,12 @@ const Home = () => {
 </body>
 
   );
-  main();
-}
-;
+  
+};
+
+// abc();
+
+
 
 
 

@@ -11,7 +11,7 @@ html{
     font-size: 10px;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif,"SF Pro Display";
     /* font-family: 'San Francisco', sans-serif; */
-    src: url("SanFranciscoFont-master/SanFranciscoDisplay-Black.otf") format("opentype");
+    /* src: url("SanFranciscoFont-master/SanFranciscoDisplay-Black.otf") format("opentype"); */
     /* src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff"); */
     overflow-x: hidden;
 }
@@ -56,6 +56,9 @@ body{
 }
 
 /* card */
+.mySwiper{
+    height: 520px ;
+}
 .swiper {
     width: 100%;
     height: 100%;
@@ -67,6 +70,7 @@ body{
 }
 
 .swiper-slide {
+    position: relative;
     font-size: 18px;
     background: #fff;
     background-color: #fff;
@@ -75,8 +79,9 @@ body{
     height: 480px!important;
     width: 398px!important;
     justify-content: space-between;
+    /* align-items: center; */
+    margin: auto;
     overflow: hidden;
-    position: relative;
     white-space: normal;
     transition: all .3s cubic-bezier(0,0,.5,1);
 
@@ -85,7 +90,7 @@ body{
 
 .swiper-slide:hover {
     box-shadow: 0 0 11px rgba(33,33,33,.2);
-    transform: scale(1.01);
+    transform: scale(1.05)!important;
 }
 
 .swiper {
@@ -211,9 +216,9 @@ img{
     opacity: .8;
 }
 
-.macbookair{
+/* .macbookair{ */
     /* width: 1000px!important; */
-}
+/* } */
 
 .macbookair .card-image img{
     height: auto;
@@ -244,7 +249,8 @@ img{
 .swiper-wrapper{
     /* transition-duration: 0ms; */
     /* transform: translate3d(400.667px, 0px, 0px)!important; */
-    margin-left: -150px;
+    margin-left: -210px;
+    height: 550px !important;
 }
 
 .swiper-pagination{

@@ -44,7 +44,7 @@ body{
 }
 
 .rs-account-sign-out:hover{
-    border-bottom:1px solid; padding-bottom:.5px;
+    text-decoration: underline;
 }
 
 
@@ -126,15 +126,14 @@ body{
 }
 
 .device_content a span:hover{
-    border-bottom:1px solid; padding-bottom:.5px;
+    text-decoration: underline;
 }
 
-/* swiper */
+/* swiper
 .swiper {
     width: 100%;
     height: 100%;
     background-color: #f5f5f7;
-    /* background-color: #000; */
 }
 
 .swiper-wrapper{
@@ -152,8 +151,10 @@ body{
     box-sizing: border-box;
     width: 475px!important;
     height: 250px!important;
+    margin-left: 10px!important;
+    margin-top: 0 !important;
 
-    /* Center slide text vertically */
+
 }
 
 .swiper {
@@ -302,7 +303,7 @@ body{
 }
 
 .as-buttonlink span:hover{
-    border-bottom:1px solid; padding-bottom:.5px;
+    text-decoration: underline;
 }
 
 /* 按鈕 */
@@ -321,7 +322,7 @@ body{
 }
 
 .setting-section-header+button:hover{
-    border-bottom:1px solid; padding-bottom:.5px;
+    text-decoration: underline;
 
 }
 
@@ -340,12 +341,12 @@ body{
 }
 
 .address+button:hover{
-    border-bottom:1px solid; padding-bottom:.5px;
+    text-decoration: underline;
 }
 
 /* pop up */
 .openaccountinfo, .form-modelus{
-    display: none;
+    /* display: none; */
     padding: 0;
     margin: 0;
     background-color: rgba(50,50,50,.88);
@@ -393,8 +394,8 @@ body{
 }
 
 
-.form-textbox input[type=text],
-.form-textbox input[type=password]{
+.mem-form-textbox input[type=text],
+.mem-form-textbox input[type=password]{
     width: 100%;
     padding: 15px;
     margin: 5px 0 20px 0;
@@ -430,12 +431,12 @@ textarea:focus, input:focus{
 
 }
 
-.overlay-change{
+.mem-overlay-change{
     text-align: center;
     margin-top: 20px;
 }
 
-.btn{
+.mem-btn{
     cursor: pointer;
     text-align: center;
     white-space: nowrap;
@@ -461,7 +462,6 @@ textarea:focus, input:focus{
     border: 0;
     color: #06c;
     padding: 0;
-    vertical-align: inherit;
     cursor: pointer;
     font-size: 17px;
     line-height: 1.17648;
@@ -478,7 +478,7 @@ textarea:focus, input:focus{
 
 .cancel:hover{
     border-radius: 0;
-    border-bottom:1px solid; padding-bottom:.5px;
+    text-decoration: underline;
 }
 
 /* X關閉樣式 */

@@ -91,7 +91,7 @@ html{
     margin-right: 15px;
 }
 
-.btn{
+.mi .btn{
     cursor: pointer;
     text-align: center;
     white-space: nowrap;
@@ -163,7 +163,7 @@ html{
 }
 
 .shop-icon{
-    background: url("images/bag-item/apple-new-arrivals-checkout-201804.jfif");
+    background: url("../../public/images/bag-item/apple-new-arrivals-checkout-201804.jfif");
     width: 980px;
     aspect-ratio: auto 980 / 400;
     height: 400px;

@@ -2,20 +2,27 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
-import Blogs from "./pages/Blogs";
-import Contact from "./pages/Contact";
+import Store from "./pages/Store";
+import Sign_in from "./pages/Sign_in";
 import NoPage from "./pages/NoPage";
+import Sign_up from "./pages/sign_up";
+import Member_info from "./pages/Member_info"
+import Bag from "./pages/bag"
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        {/* <Route path="/" element={<Layout />}> */}
           <Route index element={<Home />} />
-          <Route path="blogs" element={<Blogs />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<NoPage />} />
-        </Route>
+          <Route path="Store" element={<Store />} />
+          <Route path="Sign-in" element={<Sign_in />} />
+          <Route path="Sign-up" element={<Sign_up />} />
+          <Route path="Member-info" element={<Member_info />} />
+          <Route path="Bag" element={<Bag />} />
+
+          <Route path="" element={<NoPage />} />
+        {/* </Route> */}
       </Routes>
     </BrowserRouter>
   );

@@ -51,13 +51,18 @@ const Sign_up =() =>{
                 password:password,
                 phonezone:phonezone,
                 phone:phone
-            }
+            }).then((res) => {
+                alert("succseefully register");
+                window.location="http://localhost:3000/sign-in"
+              }).catch((e) => {
+                alert("註冊失敗!", e);
+              });
+                
+  
+  
             
-            )
-            // window.location="http://localhost:3000/sign-in"
-            
-            alert("succseefully register");
-            navigate('/sign-in', {replace: true});
+            // alert("succseefully register");
+            // navigate('/sign-in', {replace: true});
          }
 
 
@@ -69,6 +74,10 @@ const Sign_up =() =>{
 
 
     }
+
+    // register.then(
+    //               window.location="http://localhost:3000/sign-in"
+    // )
     // console.log(country)
 
     console.log(phonezone)

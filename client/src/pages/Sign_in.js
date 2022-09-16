@@ -1,7 +1,25 @@
 import "../css/sign_in.css"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import React, { useState} from 'react'
+import Axios from 'axios'
+import {useNavigate} from 'react-router-dom';
+
 const Sign_in = () => {
+    const [appleID,SetAppleID] = useState('')
+    const [password,SetPassword] = useState('')
+
+    Axios.post("http://localhost:3001/login" , {
+        email:appleID,
+        password:password
+
+    })
+
+
+    
+
+
+
     return (
       
       <>
@@ -28,11 +46,15 @@ const Sign_in = () => {
                       <div class="form-sign-in ">
                           <form action="" class="form-container">
                               <div class="form-textbox">
-                                  <input type="text" id="email"/>
+                                  <input type="text" id="email" onChange={(event)=>{
+                                    SetAppleID(event.target.value)
+                                  }}/>
                                   <span class="sign-in-firstName_label">Apple ID</span>
                               </div>
                               <div class="form-textbox">
-                                  <input type="password" id="assword"/>
+                                  <input type="password" id="assword" onChange={(event)=>{
+                                    SetPassword(event.target.value)
+                                  }}/>
                                   <span class="sign-in-firstName_label">Password</span>
                               </div>
                               <div class="overlay-change">

@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express()
-
+const bcrypt = require("bcrypt"); // 密碼加密
 const member_info_model = require("../server/modules/member")
 
 app.use(express.json())
@@ -12,7 +12,7 @@ mongoose.connect("mongodb+srv://root:root123@traningcluster.ogej9tj.mongodb.net/
     useNewUrlParser:true,
 });
 
-//新增
+//註冊 
 app.post("/register", async (req,res) =>{
 
     const firstName = req.body.firstName;
@@ -20,9 +20,13 @@ app.post("/register", async (req,res) =>{
     const country = req.body.country;
     const birthday = req.body.birthday;
     const email = req.body.email;
-    const password = req.body.password;
+    // const password = req.body.password;
     const phonezone = req.body.phonezone;
     const phone = req.body.phone;
+
+    //密碼加密
+    req.body.password = bcrypt.hashSync(req.body.password, 10);
+    const password = req.body.password;
 
     console.log(firstName)
     console.log(lastName)
@@ -50,18 +54,17 @@ app.post("/register", async (req,res) =>{
     
     try {
         await member_info.save();
-        // res.send("inserted data")
-        // res.redirect('/bag')
-        // res.redirect(307, '/bag');
 
 
     } catch (err) {
         console.log(err);
-    } finally {
-        // window.location.href('http://localhost:3000/bag')
-        res.redirect(307, '/bag');
     }
 
+})
+
+//登入
+app.post("/login", async(req,res)=>{
+    
 })
 
 app.listen(3001, ()=>{

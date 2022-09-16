@@ -15,11 +15,11 @@ export default function App() {
       <Routes>
         {/* <Route path="/" element={<Layout />}> */}
           <Route index element={<Home />} />
-          <Route path="Store" element={<Store />} />
-          <Route path="Sign-in" element={<Sign_in />} />
-          <Route path="Sign-up" element={<Sign_up />} />
-          <Route path="Member-info" element={<Member_info />} />
-          <Route path="Bag" element={<Bag />} />
+          <Route path="/Store" element={<Store />} />
+          <Route path="/Sign-in" element={<Sign_in />} />
+          <Route path="/Sign-up" element={<Sign_up />} />
+          <Route path="/Member-info" element={<Member_info />} />
+          <Route path="/Bag" element={<Bag />} />
 
           <Route path="" element={<NoPage />} />
         {/* </Route> */}

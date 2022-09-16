@@ -15,7 +15,8 @@ const MemberSchema = new mongoose.Schema({
     },
     birthday:{
         type:Date,
-        required:true
+        required:true,
+        // lastActiveAt: Date
     },
     email:{
         type:String,

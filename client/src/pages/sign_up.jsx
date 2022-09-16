@@ -1,7 +1,9 @@
 import "../css/sign_up.css"
 import Navbar from "../components/Navbar"
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import Axios from 'axios'
+import {useNavigate} from 'react-router-dom';
+import { validEmail, validPassword } from './components/RegExp';
 const Sign_up =() =>{
 
     const getInitialState = () =>{
@@ -9,71 +11,104 @@ const Sign_up =() =>{
         return country;
     }
 
+    
+    const getPhoneZone = () =>{
+        const phonezone = "TW";
+        return phonezone;
+    }
+
     const [firstName,SetFistName] = useState('');
     const [lastName,SetLastName] = useState('');
     const [country,SetCountry] = useState(getInitialState);
     const [birthday,SetBirthday] = useState('');
     const [email,SetEmail] = useState('');
+    const [firstPassword,SetFirstPassword] = useState('');
     const [password,SetPassword] = useState('');
-    const [phonezone,SetPhoneZone] = useState('');
+    const [phonezone,SetPhoneZone] = useState(getPhoneZone);
     const [phone,SetPhone] = useState('');
+    // const [emailErr, setEmailErr] = useState(false);
+    
+    const navigate = useNavigate();
 
 
 
-    const register = () =>{
-        Axios.post("http://localhost:3001/register" , {
-            firstName: firstName,
-            lastName: lastName,
-            country: country,
-            birthday: birthday,
-            email: email,
-            password:password,
-            phonezone:phonezone,
-            phone:phone
-        })
+    const  register = () =>{
 
-        console.log(firstName)
+
+        if (!validEmail.test(email)) {
+            alert('Your email is invalid')
+         }
+         else if(firstPassword != password){
+            alert('Your password is not the same')
+         }
+        else{
+            Axios.post("http://localhost:3001/register" , {
+                firstName: firstName,
+                lastName: lastName,
+                country: country,
+                birthday: birthday,
+                email: email,
+                password:password,
+                phonezone:phonezone,
+                phone:phone
+            })
+
+            
+            alert("succseefully register");
+            navigate('/sign-in', {replace: true});
+         }
+
+
+        
+
+        
+
+
+
 
     }
+    // console.log(country)
+
+    console.log(phonezone)
 
     return(
         <>
         <Navbar/>
-        <div class="login-page">
+        <div className="login-page">
         <div>
             <h1>Apple ID</h1>
-            <div class="sign-up"> <a href="sign_in.html">sign in</a></div>
-            <a class="rs-account-sign-up" href="/signup">Create Your Apple ID</a>
+            <div className="sign-up"> <a href="/sign-in">sign in</a></div>
+            <a className="rs-account-sign-up" href="/sign-up">Create Your Apple ID</a>
             <br/>
         </div>
-        <div class="login-page_header">
+        <div className="login-page_header">
         </div>
     </div>
 
-    <div class="flow">
-        <div class="flow-container">
-            <form action="http://localhost:3001/register" method="POST" class="">
-                <div class="flow-section">
-                    <div class="flow-section-title"><h1>Create Your Apple ID</h1></div>
-                    <div class="flow-section-sub-title">
-                        <div class="intro-text">One Apple ID is all you need to access all Apple services.</div>
-                        <div class="intro-link">
-                            <p>Already have an Apple&nbsp;ID?<a class="no-wrap" href="https://iforgot.apple.com/appleid">Find it here</a></p>
+    <div className="flow">
+        <div className="flow-container">
+            <form onSubmit={register}>
+                <div className="flow-section">
+                    <div className="flow-section-title"><h1>Create Your Apple ID</h1></div>
+                    <div className="flow-section-sub-title">
+                        <div className="intro-text">One Apple ID is all you need to access all Apple services.</div>
+                        <div className="intro-link">
+                            <p>Already have an Apple&nbsp;ID?<a className="no-wrap" href="https://iforgot.apple.com/appleid">Find it here</a></p>
                             
                         </div>
                     </div>
-                    <div class="form-textbox spec">
+                    <div className="form-textbox spec">
                         <input type="text" id="firstName" onChange={(event) =>{
                             SetFistName(event.target.value);
-                        }}/>
-                        <span class="firstName_label_first">First Name</span>
+                        }} required/>
+                        <span className="firstName_label_first">First Name</span>
                         <input type="text" id="lastName" onChange={(event) =>{
                             SetLastName(event.target.value);
-                        }}/>
-                        <span class="firstName_label_last">Last Name</span>
+                        }} required/>
+                        <span className="firstName_label_last">Last Name</span>
                     </div>
-                    <div class="form-textbox" style={{"margin-top":"10px"}}>
-                        <label for="COUNTRY"><h3>COUNTRY / REGION</h3></label>
+                    <div className="form-textbox" style={{"marginTop":"10px"}}>
+                        <label htmlFor="COUNTRY"><h3>COUNTRY / REGION</h3></label>
                         <select id="country" value={country} onChange={ (event) => {
                             SetCountry(event.target.value);
                         }}>
@@ -83,36 +118,37 @@ const Sign_up =() =>{
                             <option value="Sweden">Sweden</option>
                         </select>
                     </div>
-                    <div class="form-textbox">
+                    <div className="form-textbox">
                         <input type="date" id="birth" onChange={(event) =>{
                             SetBirthday(event.target.value);
-                        }}/>
-                        <span class="rg-firstName_label">Birthday</span>
+                        }} required/>
+                        <span className="rg-firstName_label">Birthday</span>
                     </div>
                 </div>
 
-                <div class="flow-section">
-                    <div class="form-textbox">
+                <div className="flow-section">
+                    <div className="form-textbox">
                         <input type="text" id="email" onChange={(event) =>{
                             SetEmail(event.target.value);
-                        }}/>
-                        <span class="rg-firstName_label">name@example.com</span>
-                        <div class="aidcaption">This will be your new Apple ID.</div>
+                        }} required/>
+                        <span className="rg-firstName_label">name@example.com</span>
+                        <div className="aidcaption">This will be your new Apple ID.</div>
                     </div>
-                    <div class="form-textbox">
-                        <input type="password" id="password" />
-                        <span class="rg-firstName_label">Password</span>
+                    <div className="form-textbox">
+                        <input type="password" id="password" onChange={(event) =>{
+                            SetFirstPassword(event.target.value)}} required/>
+                        <span className="rg-firstName_label">Password</span>
                     </div>
-                    <div class="form-textbox">
+                    <div className="form-textbox">
                         <input type="password" id="confirm-password" onChange={(event) =>{
                             SetPassword(event.target.value);
-                        }}/>
-                        <span class="rg-firstName_label">Confirm password</span>
+                        }} required/>
+                        <span className="rg-firstName_label">Confirm password</span>
                     </div>
                 </div>
 
-                <div class="flow-section">
-                    <div class="form-textbox">
+                <div className="flow-section">
+                    <div className="form-textbox">
                         <select id="zone" value={phonezone} onChange={ (event) => {
                             SetPhoneZone(event.target.value);
                         }}>
@@ -122,27 +158,27 @@ const Sign_up =() =>{
                             <option value="SE">+46 (Sweden)</option>
                         </select>
                     </div>
-                    <div class="form-textbox">
+                    <div className="form-textbox">
                         <input type="text" id="phone" onChange={(event) =>{
                             SetPhone(event.target.value);
-                        }}/>
-                        <span class="rg-firstName_label">Phone number</span>
+                        }} required/>
+                        <span className="rg-firstName_label">Phone number</span>
                     </div>
                 </div>
 
-                <div class="privacy">
-                    <div class="privacy-icon"> </div>
+                <div className="privacy">
+                    <div className="privacy-icon"> </div>
                     Your Apple ID information is used to allow you to sign in securely and access your data. Apple records certain data for security, support and reporting purposes. If you agree, Apple may also use your Apple ID information to send you marketing emails and communications, including based on your use of Apple services. 
                 </div>
-                <div class="register-btn">
-                    <button type="submit" class="sign-up-btn">Register</button>
+                <div className="register-btn">
+                    <button type="submit" className="sign-up-btn">Register</button>
                 </div>
             </form>
         </div>
     </div>
     
     <div id="apple-footer">
-        <div class="copyright">
+        <div className="copyright">
             <span>Copyright © 2022 Apple Inc. All rights reserved.</span>
         </div>
     </div>

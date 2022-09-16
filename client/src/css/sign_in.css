@@ -153,12 +153,12 @@ textarea:focus, input:focus{
     outline: none;
 }
 
-.firstName_label{
+.sign-in-firstName_label{
     position: relative;
     color: #6e6e73;
     font-size: 12px;
-    left: -125px;
-    top: -48px;
+    left: -188px;
+    top: -70px;
 
 
 }
@@ -166,8 +166,8 @@ textarea:focus, input:focus{
 .overlay-change{
     position: absolute;
     padding: 0;
-    bottom: 65px;
-    right:  40px;
+    bottom: 92px;
+    right:  70px;
 
 }
 

@@ -10,7 +10,7 @@ const Sign_in = () => {
       <div>
           <h1>Apple ID</h1>
           <div class="sign-up">sign in</div>
-          <a class="rs-account-sign-up" href="/signup">Create Your Apple ID</a>
+          <a class="rs-account-sign-up" href="/sign-up">Create Your Apple ID</a>
           <br />
       </div>
       <div class="login-page_header">
@@ -28,12 +28,12 @@ const Sign_in = () => {
                       <div class="form-sign-in ">
                           <form action="" class="form-container">
                               <div class="form-textbox">
-                                  <input type="text" id="email" value=""/>
-                                  <span class="firstName_label">Apple ID</span>
+                                  <input type="text" id="email"/>
+                                  <span class="sign-in-firstName_label">Apple ID</span>
                               </div>
                               <div class="form-textbox">
-                                  <input type="password" id="assword" value=""/>
-                                  <span class="firstName_label">Password</span>
+                                  <input type="password" id="assword"/>
+                                  <span class="sign-in-firstName_label">Password</span>
                               </div>
                               <div class="overlay-change">
                                   <button type="submit"  class="btn">

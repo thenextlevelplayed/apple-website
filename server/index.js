@@ -24,6 +24,16 @@ app.post("/register", async (req,res) =>{
     const phonezone = req.body.phonezone;
     const phone = req.body.phone;
 
+    console.log(firstName)
+    console.log(lastName)
+    console.log(country)
+    console.log(birthday)
+    console.log(email)
+    console.log(password)
+    console.log(phonezone)
+    console.log(phone)
+
+
 
     const member_info = new member_info_model({
         firstname:firstName,
@@ -35,14 +45,23 @@ app.post("/register", async (req,res) =>{
         phonezone:phonezone,
         phonenumber:phone
     })
+
+    // console.log(member_info.firstname,member_info.countryregion,member_info.password)
     
     try {
         await member_info.save();
-        res.send("inserted data")
+        // res.send("inserted data")
+        // res.redirect('/bag')
+        // res.redirect(307, '/bag');
+
+
     } catch (err) {
         console.log(err);
-
+    } finally {
+        // window.location.href('http://localhost:3000/bag')
+        res.redirect(307, '/bag');
     }
+
 })
 
 app.listen(3001, ()=>{

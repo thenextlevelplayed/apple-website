@@ -51,8 +51,10 @@ const Sign_up =() =>{
                 password:password,
                 phonezone:phonezone,
                 phone:phone
-            })
-
+            }
+            
+            )
+            // window.location="http://localhost:3000/sign-in"
             
             alert("succseefully register");
             navigate('/sign-in', {replace: true});

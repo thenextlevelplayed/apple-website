@@ -30,9 +30,53 @@ const Sign_up =() =>{
     
     const navigate = useNavigate();
 
+    // const handleSubmit =  (event) => {
+    //     event.preventDefault();
+    //      Axios.post("http://localhost:3010/register" , {
+    //             firstName: firstName,
+    //             lastName: lastName,
+    //             country: country,
+    //             birthday: birthday,
+    //             email: email,
+    //             password:password,
+    //             phonezone:phonezone,
+    //             phone:phone
+    //         }).then((res)=>{
+    //             console.log(res.data)
+    //             window.location="http://localhost:3000/sign-in"
+    //         }).catch((e)=>{
+    //             console.log('error',e)
+    //         })
+        // if (!validEmail.test(email)) {
+        //     alert('Your email is invalid')
+        //  }
+        //  else if(firstPassword != password){
+        //     alert('Your password is not the same')
+        //  }else{
+        //     await Axios.post("http://localhost:3010/register" , {
+        //         firstName: firstName,
+        //         lastName: lastName,
+        //         country: country,
+        //         birthday: birthday,
+        //         email: email,
+        //         password:password,
+        //         phonezone:phonezone,
+        //         phone:phone
+        //     }).then((res)=>{
+        //         console.log(res.data)
+        //         window.location="http://localhost:3000/sign-in"
+        //     }).catch((e)=>{
+        //         console.log('error',e)
+        //     })
+        //     //   window.location="http://localhost:3000/sign-in"
+        //     // alert("succseefully register");
+        //     // navigate('/sign-in', {replace: true});
+        //  }
+    //   }
 
 
-    const  register = () =>{
+
+    const  register = async () =>{
 
 
         if (!validEmail.test(email)) {
@@ -42,7 +86,7 @@ const Sign_up =() =>{
             alert('Your password is not the same')
          }
         else{
-            Axios.post("http://localhost:3001/register" , {
+            await Axios.post("http://localhost:3010/register" , {
                 firstName: firstName,
                 lastName: lastName,
                 country: country,
@@ -80,7 +124,6 @@ const Sign_up =() =>{
     // )
     // console.log(country)
 
-    console.log(phonezone)
 
     return(
         <>
@@ -98,7 +141,7 @@ const Sign_up =() =>{
 
     <div className="flow">
         <div className="flow-container">
-            <form onSubmit={register}>
+            <form >
                 <div className="flow-section">
                     <div className="flow-section-title"><h1>Create Your Apple ID</h1></div>
                     <div className="flow-section-sub-title">
@@ -182,7 +225,7 @@ const Sign_up =() =>{
                     Your Apple ID information is used to allow you to sign in securely and access your data. Apple records certain data for security, support and reporting purposes. If you agree, Apple may also use your Apple ID information to send you marketing emails and communications, including based on your use of Apple services. 
                 </div>
                 <div className="register-btn">
-                    <button type="submit" className="sign-up-btn">Register</button>
+                    <button className="sign-up-btn" onClick={register}>Register</button>
                 </div>
             </form>
         </div>

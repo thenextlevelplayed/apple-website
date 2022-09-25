@@ -4,16 +4,59 @@ import Footer from "../components/Footer"
 import React, { useState} from 'react'
 import Axios from 'axios'
 import {useNavigate} from 'react-router-dom';
+import context from "../components/context"
 
 const Sign_in = () => {
     const [appleID,SetAppleID] = useState('')
     const [password,SetPassword] = useState('')
+    const [token, setToken] = useState(localStorage.getItem("token"));
 
-    Axios.post("http://localhost:3001/login" , {
-        email:appleID,
-        password:password
 
-    })
+    const login=()=>{
+        if (appleID !== "" && password !== "") {
+            if (appleID !== "" && password !== "") {
+                Axios({
+                    method:'POST',
+                    url:'http://localhost:3010/login',
+                    data:{
+                            email:appleID,
+                            password:password
+                    }
+                }).then((res)=>{
+                    console.log(res.data.success);
+                    if(res.data.success===true){
+                        // window.sessionStorage.setItem('name',response.data.name)
+                        window.sessionStorage.setItem('token',res.data.token)
+                        // window.sessionStorage.setItem('user',response.data.login)
+                        window.sessionStorage.setItem('email',res.data.email)
+                        // window.sessionStorage.setItem('res',response.data.success)
+                        // props.onHistory.push('/')
+                        // 跳轉
+                        alert('登入成功')
+                        window.location="http://localhost:3000/member-info"
+                    }}).catch((e)=>{
+                        if(e.response.error){
+                            alert("account or password is wrong")
+                        }
+                    })
+                }
+
+            // Axios.post("http://localhost:3010/login" , {
+            //     email:appleID,
+            //     password:password
+            // }).then((res) => {
+            //     alert("login!");
+            //     // console.log(res.data)
+            // }).catch((e)=>{
+            //     if (e.response.error){
+            //         alert("account or password is wrong")
+            //     }
+            // })
+
+    }
+    
+
+}
 
 
     
@@ -24,53 +67,53 @@ const Sign_in = () => {
       
       <>
       <Navbar/>
-      <div class="login-page">
+      <div className="login-page">
       <div>
           <h1>Apple ID</h1>
-          <div class="sign-up">sign in</div>
-          <a class="rs-account-sign-up" href="/sign-up">Create Your Apple ID</a>
+          <div className="sign-up">sign in</div>
+          <a className="rs-account-sign-up" href="/sign-up">Create Your Apple ID</a>
           <br />
       </div>
-      <div class="login-page_header">
+      <div className="login-page_header">
       </div>
   </div>
-  <div class="landing">
-      <div class="landing-top">
-          <div class="landing-interaction">
-              <div class="sign-in">
-                  <div class="sign-in-auth">
-                      <div class="sign-in-title">
-                          <h1 class="appleid">Apple ID</h1>
+  <div className="landing">
+      <div className="landing-top">
+          <div className="landing-interaction">
+              <div className="sign-in">
+                  <div className="sign-in-auth">
+                      <div className="sign-in-title">
+                          <h1 className="appleid">Apple ID</h1>
                           <p>Manage your Apple account</p>
                       </div>
-                      <div class="form-sign-in ">
-                          <form action="" class="form-container">
-                              <div class="form-textbox">
+                      <div className="form-sign-in ">
+                          <div className="form-container" >
+                              <div className="form-textbox">
                                   <input type="text" id="email" onChange={(event)=>{
                                     SetAppleID(event.target.value)
-                                  }}/>
-                                  <span class="sign-in-firstName_label">Apple ID</span>
+                                  }} required/>
+                                  <span className="sign-in-firstName_label">Apple ID</span>
                               </div>
-                              <div class="form-textbox">
+                              <div className="form-textbox">
                                   <input type="password" id="assword" onChange={(event)=>{
                                     SetPassword(event.target.value)
-                                  }}/>
-                                  <span class="sign-in-firstName_label">Password</span>
+                                  }} required/>
+                                  <span className="sign-in-firstName_label">Password</span>
                               </div>
-                              <div class="overlay-change">
-                                  <button type="submit"  class="btn">
-                                      <span class="arrow-right"></span>
+                              <div className="overlay-change">
+                                  <button   className="btn" onClick={login}>
+                                      <span className="arrow-right"></span>
                                   </button>
                               </div>
-                              <div class="remember-password">
+                              <div className="remember-password">
                                   <input type="checkbox" name="" id="remember-me"/>
-                                  <label for="remember-me">
+                                  <label htmlFor="remember-me">
                                       <span>
                                           Remember me
                                       </span>
                                   </label>
                               </div>                              
-                          </form>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -78,8 +121,8 @@ const Sign_in = () => {
       </div>
   </div>
 
-  <div class="rs-chat">
-      <div class="rs-chat-container">
+  <div className="rs-chat">
+      <div className="rs-chat-container">
           <div>
               Need some help? or call 1‑800‑MY‑APPLE.
           </div>
@@ -87,7 +130,7 @@ const Sign_in = () => {
   </div>
 
   <div id="apple-footer">
-      <div class="copyright">
+      <div className="copyright">
           <span>Copyright © 2022 Apple Inc. All rights reserved.</span>
       </div>
   </div>

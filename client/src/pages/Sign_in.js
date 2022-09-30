@@ -17,7 +17,7 @@ const Sign_in = () => {
             if (appleID !== "" && password !== "") {
                 Axios({
                     method:'POST',
-                    url:'http://localhost:3010/login',
+                    url:'http://localhost:3001/login',
                     data:{
                             email:appleID,
                             password:password
@@ -34,6 +34,8 @@ const Sign_in = () => {
                         // 跳轉
                         alert('登入成功')
                         window.location="http://localhost:3000/member-info"
+                    }else{
+                        alert("account or password is wrong")
                     }}).catch((e)=>{
                         if(e.response.error){
                             alert("account or password is wrong")
@@ -41,7 +43,7 @@ const Sign_in = () => {
                     })
                 }
 
-            // Axios.post("http://localhost:3010/login" , {
+            // Axios.post("http://localhost:3001/login" , {
             //     email:appleID,
             //     password:password
             // }).then((res) => {

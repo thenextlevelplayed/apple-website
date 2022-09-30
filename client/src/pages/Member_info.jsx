@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar"
 import React, { useRef, useState, useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import {useNavigate} from 'react-router-dom';
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -13,6 +13,10 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination, Navigation } from "swiper";
 import Axios from 'axios'
+
+//regexp
+import { validEmail, validPassword } from './components/RegExp';
+
 
 
 
@@ -71,28 +75,170 @@ const openPhoneInfo =event =>{
     setOpenPhone(current =>!current)
 }
 
-    // get data
+// get data
 const [data,setData] = useState([]);
 const getToken = window.sessionStorage.getItem('token');
 const email = window.sessionStorage.getItem('email')
 console.log(getToken)
-console.log(email)
+// console.log(email)
+// console.log(data, 'data');
+// console.log('_id',data._id)
 
-// Axios.get(`http://localhost:3010/memberInfo?token=${getToken}`).then(res=>{
-//     res.send(email);
-//     console.log(email);
-//     console.log(res.data);
-//     console.log(123);
+// useEffect(() =>{
+//     const getToken = window.sessionStorage.getItem('token')
+//     Axios.get(`http://localhost:3001/memberInfo?token=${getToken}`).then((res)=>{
+//         console.log('res.data.data',res.data.data);
+//         setData(res.data.data)
+//     }).catch(error => {
+//         if (error.response){
+//             console.log(error.response)
 
-//     setData(res.data.data)
+//             //do something
+            
+//             }else if(error.request){
+//                 console.log(error.request)
+            
+//             //do something else
+            
+//             }else if(error.message){
+//                 console.log(error.message)
+            
+//             //do something other than the other two
+            
+//             }
+//       });
+// },[])
+
+//update data
+const [data_firstname,setData_firstname] = useState('')
+const [data_lastname,setData_lastname] = useState('')
+const [data_email,setData_email] = useState('')
+const [data_password,setData_password] = useState('')
+const [data_oldpassword,setData_oldpassword] = useState('')
+const [data_phone,setData_phone] = useState('')
     
-// }).catch(error=>{
-//     console.log(error);
-// })
-// console.log(data);
-useEffect(() =>{
-    const getToken = window.sessionStorage.getItem('token')
-    Axios.get(`http://localhost:3010/memberInfo?token=${getToken}`).then((res)=>{
+const update_name = async () =>{
+    await Axios({
+        method:'PUT',
+        url:`http://localhost:3001/updateName?token=${getToken}`,
+        data:{
+            newFirstName:data_firstname,
+            newLastName:data_lastname,
+            id:data._id
+            
+        },
+    }).then((res)=>{
+        console.log(res.data.success);
+        if(res.data.success===true){
+            alert('update successfully')
+            window.location=`http://localhost:3000/member-Info`
+        }
+    }).catch((e)=>{
+        if(e.res.error){
+            alert('somthing wrong')
+        }
+    })
+}
+
+const update_email = async () =>{
+    // regular expression
+    if (!validEmail.test(data_email)) {
+        alert('Your email is invalid')
+        }else{
+        await Axios({
+            method:'PUT',
+            url:`http://localhost:3001/updateEmail?token=${getToken}`,
+            data:{
+                newEmail:data_email,
+                id:data._id
+                
+            },
+        }).then((res)=>{
+            console.log(res.data.success);
+            if(res.data.success===true){
+                alert('update successfully')
+                window.location=`http://localhost:3000/member-Info`
+            }
+        }).catch((e)=>{
+            if(e.res.error){
+                alert('somthing wrong')
+            }
+        })
+        }
+    
+}
+
+const update_phone = async () =>{
+    // regular expression
+    
+    await Axios({
+        method:'PUT',
+        url:`http://localhost:3001/updatePhone?token=${getToken}`,
+        data:{
+            newPhoneNum:data_phone,
+            id:data._id
+            
+        },
+    }).then((res)=>{
+        console.log(res.data.success);
+        if(res.data.success===true){
+            alert('update successfully')
+            window.location=`http://localhost:3000/member-Info`
+        }
+    }).catch((e)=>{
+        if(e.res.error){
+            alert('somthing wrong')
+        }
+    })
+        
+    
+}
+
+const comfrim = async () =>{
+    await Axios.post(`http://localhost:3001/comfirm`, {
+        oldPassword: data_oldpassword,
+        newPassword: data_password,
+        id:data._id
+    }).then((res)=>{
+        res.send('update successfully')
+        alert('update successfully')
+    }).catch((e)=>{
+        if(e.res.error){
+            alert('somthing wrong')
+        }
+    })
+    
+}
+
+// const update_password = async () =>{
+//     Axios.all([
+//         Axios.post(`/comfirm`, {
+//             oldPassword: data_oldpassword,
+//             id:data._id
+//         }), 
+//         Axios.put(`/updatePassword`, {
+//           newPassword: data_password,
+//           id:data._id
+//         })
+//       ])
+//       .then(Axios.spread((data1, data2) => {
+//         // output of req.
+//         console.log('data1', data1, 'data2', data2)
+//       }));
+// }
+
+
+// 判斷是否有token 如果沒有進入登入畫面
+const navigate = useNavigate();
+
+useEffect(()=>{
+    // 沒有token轉到登入畫面
+    if(getToken == null){
+        navigate('/sign-in', {replace: true});
+    }else{
+        // 有token 撈資料庫資料
+        const getToken = window.sessionStorage.getItem('token')
+    Axios.get(`http://localhost:3001/memberInfo?token=${getToken}`).then((res)=>{
         console.log('res.data.data',res.data.data);
         setData(res.data.data)
     }).catch(error => {
@@ -113,15 +259,8 @@ useEffect(() =>{
             
             }
       });
+    }
 },[])
-
- console.log(data, 'data');
-
-
-
-
-    
-
 
     return(
 
@@ -132,7 +271,7 @@ useEffect(() =>{
         <div className="member_name">
             <div>
                 <h1>Account</h1>
-                <a className="rs-account-sign-out more" href="/signout">sign out</a>
+                <a className="rs-account-sign-out more" href="/Sign-out">sign out</a>
                 <br/>
             </div>
             <div className="member_name_header">
@@ -301,19 +440,19 @@ useEffect(() =>{
             <form action="" className="form-container">
                 <h1>Edit your account info</h1>
                 <div className="mem-form-textbox">
-                    <input type="text" id="firstName" value={data.firstname}/>
+                    <input type="text" id="firstName" onChange={(event)=>{
+                                    setData_firstname(event.target.value)
+                                  }} required/>
                     <span className="firstName_label">First Name</span>
                 </div>
                 <div className="mem-form-textbox">
-                    <input type="text" id="mem-lastName" value="{{lastName}}"/>
+                    <input type="text" id="mem-lastName" onChange={(event)=>{
+                                    setData_lastname(event.target.value)
+                                  }} required/>
                     <span className="firstName_label">Last Name</span>
                 </div>
-                <div className="mem-form-textbox">
-                    <input type="text" id="address" value="{{address}}"/>
-                    <span className="firstName_label">Address</span>
-                </div>
                 <div className="mem-overlay-change">
-                    <button type="submit"  className="mem-btn">Save</button>
+                    <button type="submit"  className="mem-btn" onClick={update_name}>Save</button>
                     <button type="button"  className="mem-btn cancel" onClick={openAccountInfo}>cancel</button>
                 </div>
                 <button type="button" className="rc-overlay-close" onClick={openAccountInfo} aria-label="close" data-autom="overlay-close"><span className="rc-overlay-closesvg"><svg width="21" height="21" className="as-svgicon as-svgicon-close as-svgicon-tiny as-svgicon-closetiny" role="img" aria-hidden="true"><path fill="none" d="M0 0h21v21H0z"></path><path d="M12.12 10l4.07-4.06a1.5 1.5 0 10-2.11-2.12L10 7.88 5.94 3.81a1.5 1.5 0 10-2.12 2.12L7.88 10l-4.07 4.06a1.5 1.5 0 000 2.12 1.51 1.51 0 002.13 0L10 12.12l4.06 4.07a1.45 1.45 0 001.06.44 1.5 1.5 0 001.06-2.56z"></path></svg></span></button>
@@ -331,11 +470,13 @@ useEffect(() =>{
                     <span className="firstName_label">Email</span>
                 </div>
                 <div className="mem-form-textbox">
-                    <input type="text" id="newEmail" />
+                    <input type="text" id="newEmail" onChange={(event)=>{
+                                    setData_email(event.target.value)
+                                  }} required/>
                     <span className="firstName_label">New email</span>
                 </div>
                 <div className="mem-overlay-change">
-                    <button type="submit"  className="mem-btn">Save</button>
+                    <button type="submit"  className="mem-btn" onClick={update_email}>Save</button>
                     <button type="button"  className="mem-btn cancel" onClick={openEmailInfo}>cancel</button>
                 </div>
                 <button type="button" className="rc-overlay-close" onClick={openEmailInfo} aria-label="close" data-autom="overlay-close"><span className="rc-overlay-closesvg"><svg width="21" height="21" className="as-svgicon as-svgicon-close as-svgicon-tiny as-svgicon-closetiny" role="img" aria-hidden="true"><path fill="none" d="M0 0h21v21H0z"></path><path d="M12.12 10l4.07-4.06a1.5 1.5 0 10-2.11-2.12L10 7.88 5.94 3.81a1.5 1.5 0 10-2.12 2.12L7.88 10l-4.07 4.06a1.5 1.5 0 000 2.12 1.51 1.51 0 002.13 0L10 12.12l4.06 4.07a1.45 1.45 0 001.06.44 1.5 1.5 0 001.06-2.56z"></path></svg></span></button>
@@ -349,15 +490,19 @@ useEffect(() =>{
             <form action="" className="form-container">
                 <h1>Change your password </h1>
                 <div className="mem-form-textbox">
-                    <input type="password" id="password" />
+                    <input type="password" id="password" onChange={(event)=>{
+                                    setData_oldpassword(event.target.value)
+                                  }} required/>
                     <span className="firstName_label">Current password</span>
                 </div>
                 <div className="mem-form-textbox">
-                    <input type="password" id="newPassword" />
+                    <input type="password" id="newPassword" onChange={(event)=>{
+                                    setData_password(event.target.value)
+                                  }} required/>
                     <span className="firstName_label">New password</span>
                 </div>
                 <div className="mem-overlay-change">
-                    <button type="submit"  className="mem-btn">Save</button>
+                    <button type="submit"  className="mem-btn" onClick={comfrim}>Save</button>
                     <button type="button"  className="mem-btn cancel" onClick={openPasswordInfo}>cancel</button>
                 </div>
                 <button type="button" className="rc-overlay-close" onClick={openPasswordInfo} aria-label="close" data-autom="overlay-close"><span className="rc-overlay-closesvg"><svg width="21" height="21" className="as-svgicon as-svgicon-close as-svgicon-tiny as-svgicon-closetiny" role="img" aria-hidden="true"><path fill="none" d="M0 0h21v21H0z"></path><path d="M12.12 10l4.07-4.06a1.5 1.5 0 10-2.11-2.12L10 7.88 5.94 3.81a1.5 1.5 0 10-2.12 2.12L7.88 10l-4.07 4.06a1.5 1.5 0 000 2.12 1.51 1.51 0 002.13 0L10 12.12l4.06 4.07a1.45 1.45 0 001.06.44 1.5 1.5 0 001.06-2.56z"></path></svg></span></button>
@@ -371,15 +516,17 @@ useEffect(() =>{
             <form action="" className="form-container">
                 <h1>Edit your phone info</h1>
                 <div className="mem-form-textbox">
-                    <input type="text" id="phone" value={'0'+data.phonenumber} readOnly/>
+                    <input type="text" id="phone" value={data.phonenumber} readOnly/>
                     <span className="firstName_label">phone</span>
                 </div>
                 <div className="mem-form-textbox">
-                    <input type="text" id="newPhone" />
+                    <input type="text" id="newPhone" onChange={(event)=>{
+                                    setData_phone(event.target.value)
+                                  }} required/>
                     <span className="firstName_label">new Phone</span>
                 </div>
                 <div className="mem-overlay-change">
-                    <button type="submit"  className="mem-btn">Save</button>
+                    <button type="submit"  className="mem-btn" onClick={update_phone}>Save</button>
                     <button type="button"  className="mem-btn cancel" onClick={openPhoneInfo}>cancel</button>
                 </div>
                 <button type="button" className="rc-overlay-close" onClick={openPhoneInfo} aria-label="close" data-autom="overlay-close"><span className="rc-overlay-closesvg"><svg width="21" height="21" className="as-svgicon as-svgicon-close as-svgicon-tiny as-svgicon-closetiny" role="img" aria-hidden="true"><path fill="none" d="M0 0h21v21H0z"></path><path d="M12.12 10l4.07-4.06a1.5 1.5 0 10-2.11-2.12L10 7.88 5.94 3.81a1.5 1.5 0 10-2.12 2.12L7.88 10l-4.07 4.06a1.5 1.5 0 000 2.12 1.51 1.51 0 002.13 0L10 12.12l4.06 4.07a1.45 1.45 0 001.06.44 1.5 1.5 0 001.06-2.56z"></path></svg></span></button>

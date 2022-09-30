@@ -12,8 +12,8 @@ const { json } = require('express');
 
 app.use(express.json())
 app.use(cors());
-app.listen(3010, ()=>{
-    console.log("server running on port 3010")
+app.listen(3001, ()=>{
+    console.log("server running on port 3001")
 })
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -96,6 +96,7 @@ app.post("/login", async(req,res)=>{
             // console.log(collection.password)
             const setToken= {
                 email:req.body.email,
+                id:collection._id
             }
 
             const token = jwt.sign(setToken,config.jwtKey, {expiresIn:'24h'})
@@ -113,80 +114,71 @@ app.post("/login", async(req,res)=>{
         } else{
             console.log('wrong!')
             return res.send("Wrong username or password.");
-            
-
-
         }}
     }catch (error) {
         console.log(error);
         return res.status(500).send("Internal Server error Occured");
     }
+})
+// check password
+app.post('/comfirm',async(req,res)=>{
+    const oldPassword = req.body.oldPassword
+    const newPassword = req.body.newPassword
+    const id = req.body.id;
+    const collection = await member_info_model.findById({
+        _id:id
+    })
+    console.log(oldPassword)
+    console.log(newPassword)
+    console.log(collection.password)
+    try { if (collection){
+        // 對照密碼
+        const cmp =  await bcrypt.compare(oldPassword, collection.password);
+        if (cmp){
+            // 密碼加密
+            password = await bcrypt.hash(newPassword, saltRounds);
+            try{
+                await member_info_model.findByIdAndUpdate(id,
+                    {
+                        password:password,
+                }, function (err, docs) {
+                    if (err){ 
+                        console.log(err)
+                        res.send('err') 
+                    } 
+                    else{ 
+                        console.log("Updated User:", docs); 
+                        res.send('docs') 
+                    } 
+                 })
+            }catch (err){
+                console.log('err',err)
+            }
 
-    // var query = dbSchemas.SomeValue.find({}).select('name');
 
-    // collection.exec(function (err, docs) {
-    //     if (err) return (err);
-    //     res.send(docs);
-    //     console.log(docs)
-    // });
-  
-
-    // console.log( collection.getFilter());
-    // collection.getFilter();
-
-    // ,(err,result)=>{
-    //     // if(err) {
-    //     //     console.log('err:',err)
-    //     //     res.send("account or password is wrong")
-    //     // }
-    //     console.log(email);
-    //     console.log(password);
-    //     console.log('result:',result)
-    //     res.send("correct")
-    // })
-
+            return res.json({
+                success: true,
+                login_check: true,
+                password_check: true,
+                message: '認證成功...',
+            });
+        } else{
+            console.log('wrong!')
+            return res.send("Wrong password.");
+        }}
+    }catch (error) {
+        console.log(error);
+        return res.status(500).send("Internal Server error Occured");
+    }
 })
 
-//會員資料顯示
-// app.get('/memberInfo',verifyToken,(req,res)=>{
-//     console.log("AppleID : ",req.body.email);
-//     member_info_model.findOne({
-//         email:req.body.email
-//     },(err,AppleID)=>{
-//         if(err){
-//             res.json({
-//                 success:false,
-//             message:"MongoDB Error ..."
-//             })
-//         return false;
-//         }
-//         if(!AppleID){
-//             return res.json({
-//                 success:false,
-//                 message:"Login使用者不存在，建議使用者進行註冊"
-//               })
-//         } else{
-//             console.log( AppleID.firstname)
-//             return res.json({
-//                 success:true,
-//                 message:"使用者存在",
-//                 data:AppleID
-//                 // firstname : AppleID.firstname,
-//                 // lastname : AppleID.lastname,
-//                 // email:AppleID.email,
-//                 // password:password,
-//                 // phonenumber:phonenumber 
-//             }) 
-                       
-//         } 
-//     })
-// })
 
-//test-----------------------
+
+//會員資料顯示
 app.get('/memberInfo',async (req,res)=>{
     
     let token =req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
-    console.log(token)
+    // console.log(token)
     if(token){
         await jwt.verify(token,config.jwtKey),(err,decoded)=>{
             if (err){
@@ -210,10 +202,10 @@ app.get('/memberInfo',async (req,res)=>{
         });
     }
     var decoded = jwt_decode(token);
-    console.log('decoded',decoded)
+    // console.log('decoded',decoded)
 
     member_info_model.findOne({
-        email:decoded.email
+        _id:decoded.id
         // email:'im7878@gmail.com'
 
     }, function (err, userinfo) {
@@ -224,6 +216,165 @@ app.get('/memberInfo',async (req,res)=>{
         })
       })
 });
+
+//udate data
+app.put('/updateName', async (req,res)=>{
+    const newFirstName = req.body.newFirstName;
+    const newLastName = req.body.newLastName;
+    const id = req.body.id;
+    // const id = '63255c2817e5a5d72666dbbe';
+    console.log(newFirstName)
+    console.log(newLastName)
+    console.log(id)
+
+    //add auth
+    let token =req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+    // console.log(token)
+    if(token){
+        await jwt.verify(token,config.jwtKey),(err,decoded)=>{
+            if (err){
+                console.log('500')
+                return res.status(500).json({
+                    success:false,
+                    message:'token 認證錯誤'
+                });
+            } else{
+                console.log('200')
+                res.send('getinfo')
+
+                // return req.body.email
+            }
+        }
+    } else{
+        console.log('403')
+        return res.status(403).json({
+            success:false,
+            message:'沒有提供 token 做驗證'
+        });
+    }
+
+
+    try{
+        await member_info_model.findByIdAndUpdate(id,
+            {
+                firstname:newFirstName,
+                lastname:newLastName
+        }, function (err, docs) {
+            if (err){ 
+                console.log(err)
+                res.send('err') 
+            } 
+            else{ 
+                console.log("Updated User:", docs); 
+                res.send('docs') 
+            } 
+         })
+    }catch (err){
+        console.log('err',err)
+    }
+})
+
+app.put('/updateEmail', async (req,res)=>{
+    const newEmail = req.body.newEmail;
+    const id = req.body.id;
+    console.log(id)
+
+    //add auth
+    let token =req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+    // console.log(token)
+    if(token){
+        await jwt.verify(token,config.jwtKey),(err,decoded)=>{
+            if (err){
+                console.log('500')
+                return res.status(500).json({
+                    success:false,
+                    message:'token 認證錯誤'
+                });
+            } else{
+                console.log('200')
+                res.send('getinfo')
+
+                // return req.body.email
+            }
+        }
+    } else{
+        console.log('403')
+        return res.status(403).json({
+            success:false,
+            message:'沒有提供 token 做驗證'
+        });
+    }
+
+
+    try{
+        await member_info_model.findByIdAndUpdate(id,
+            {
+                email:newEmail,
+        }, function (err, docs) {
+            if (err){ 
+                console.log(err)
+                res.send('err') 
+            } 
+            else{ 
+                console.log("Updated User:", docs); 
+                res.send('docs') 
+            } 
+         })
+    }catch (err){
+        console.log('err',err)
+    }
+})
+
+app.put('/updatePhone', async (req,res)=>{
+    const newPhoneNum = req.body.newPhoneNum;
+    const id = req.body.id;
+    console.log(id)
+
+    //add auth
+    let token =req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+    // console.log(token)
+    if(token){
+        await jwt.verify(token,config.jwtKey),(err,decoded)=>{
+            if (err){
+                console.log('500')
+                return res.status(500).json({
+                    success:false,
+                    message:'token 認證錯誤'
+                });
+            } else{
+                console.log('200')
+                res.send('getinfo')
+
+                // return req.body.email
+            }
+        }
+    } else{
+        console.log('403')
+        return res.status(403).json({
+            success:false,
+            message:'沒有提供 token 做驗證'
+        });
+    }
+
+
+    try{
+        await member_info_model.findByIdAndUpdate(id,
+            {
+                phonenumber:newPhoneNum,
+        }, function (err, docs) {
+            if (err){ 
+                console.log(err)
+                res.send('err') 
+            } 
+            else{ 
+                console.log("Updated User:", docs); 
+                res.send('docs') 
+            } 
+         })
+    }catch (err){
+        console.log('err',err)
+    }
+})
 
 
 

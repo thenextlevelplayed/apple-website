@@ -8,6 +8,7 @@ import NoPage from "./pages/NoPage";
 import Sign_up from "./pages/sign_up";
 import Member_info from "./pages/Member_info"
 import Bag from "./pages/bag"
+import Sign_out from "./pages/sign_out"
 
 export default function App() {
   return (
@@ -20,7 +21,7 @@ export default function App() {
           <Route path="/Sign-up" element={<Sign_up />} />
           <Route path="/Member-info" element={<Member_info />} />
           <Route path="/Bag" element={<Bag />} />
-
+          <Route path="/Sign-out" element={<Sign_out />} />
           <Route path="" element={<NoPage />} />
         {/* </Route> */}
       </Routes>

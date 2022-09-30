@@ -32,7 +32,7 @@ const Sign_up =() =>{
 
     // const handleSubmit =  (event) => {
     //     event.preventDefault();
-    //      Axios.post("http://localhost:3010/register" , {
+    //      Axios.post("http://localhost:3001/register" , {
     //             firstName: firstName,
     //             lastName: lastName,
     //             country: country,
@@ -53,7 +53,7 @@ const Sign_up =() =>{
         //  else if(firstPassword != password){
         //     alert('Your password is not the same')
         //  }else{
-        //     await Axios.post("http://localhost:3010/register" , {
+        //     await Axios.post("http://localhost:3001/register" , {
         //         firstName: firstName,
         //         lastName: lastName,
         //         country: country,
@@ -86,7 +86,7 @@ const Sign_up =() =>{
             alert('Your password is not the same')
          }
         else{
-            await Axios.post("http://localhost:3010/register" , {
+            await Axios.post("http://localhost:3001/register" , {
                 firstName: firstName,
                 lastName: lastName,
                 country: country,

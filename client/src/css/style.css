@@ -86,11 +86,96 @@ header{
     height: 4.4rem;
     background: url("../../public/images/icons/search.svg") center no-repeat;
 }
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    z-index: 1;
+    border: 1px solid #d2d2d7;
+    border-radius: 18px;
+    display: none;
+    width: 286px;
+}
+
+.dropdown .dropbtn {
+    /* font-size: 16px;   */
+    border: none;
+    outline: none;
+    color: white;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.dropdown-content ul {
+    list-style: none ;
+    padding-left: 10px;
+    margin: 0;
+}
+
+.dropdown-content ul li{
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #d2d2d7;
+    /* list-style: none ; */
+
+    /* list-style-image: url("../../public/images/icons/orders.png") ; */
+    /* list-style-position: outside; */
+}
+
+.bag-icon a{
+    border-top: none;
+	background-image: url("../../public/images/icons/bag\ \(1\).svg");
+	background-repeat: no-repeat;
+	background-position:-2px 11px;
+	background-size:21px 21px;
+}
+
+.Orders-icon a{
+	background-image: url("../../public/images/icons/orders.svg");
+	background-repeat: no-repeat;
+	background-position:-2px 11px;
+	background-size:21px 21px;
+}
+
+.Account-icon a{
+	background-image: url("../../public/images/icons/account.svg");
+	background-repeat: no-repeat;
+	background-position:-2px 11px;
+	background-size:21px 21px;
+}
+
+.Signin-icon a{
+	background-image: url("../../public/images/icons/signIn.svg");
+	background-repeat: no-repeat;
+	background-position:-2px 11px;
+	background-size:21px 21px;
+}
+
+.dropdown-content a {
+    font-size: 16px;
+    color: #06c;
+    padding: 0px 2.3rem;
+    margin-left: 3px;
+    line-height: 44px;
+}
+
+.dropdown-content a:hover {
+    text-decoration: underline;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
 /* iphone 13 section */
 .iphone-13{
+    /* margin-top: 0; */
     /* background: url("../../public/images/hero/iphone-11-pro/iphone_11_pro_large.jpg"); */
     background: url("../../public/images/hero/iphone-13/iphone-13-large.jpg");
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
 }
 
 .title{

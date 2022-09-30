@@ -19,8 +19,8 @@ const Home = () => {
             <h3 class="title-sub-heading">Your new superpower.</h3>
         </div>
         <div class="cta">
-            <a href="#" class="cta-link cta-link-darker" id="">Learn more</a>
-            <a href="#" class="cta-link cta-link-darker" id="">Buy</a>
+            <a href="/Store" class="cta-link cta-link-darker" id="">Learn more</a>
+            <a href="/Store" class="cta-link cta-link-darker" id="">Buy</a>
         </div>
     </div>
    </section>
@@ -32,8 +32,8 @@ const Home = () => {
             <h3 class="title-sub-heading">Oh. So. Pro.</h3>
         </div>
         <div class="cta">
-            <a href="#" class="cta-link cta-link-darker" id="">Learn more</a>
-            <a href="#" class="cta-link cta-link-darker" id="">Buy</a>
+            <a href="/Store" class="cta-link cta-link-darker" id="">Learn more</a>
+            <a href="/Store" class="cta-link cta-link-darker" id="">Buy</a>
         </div>
     </div>
     
@@ -46,7 +46,7 @@ const Home = () => {
             <h3 class="title-sub-heading">Save&nbsp;on&nbsp;Mac&nbsp;or&nbsp;iPad. Plus&nbsp;get&nbsp;a&nbsp;gift&nbsp;card&nbsp;up&nbsp;to&nbsp;$150.</h3>
         </div>
         <div class="cta">
-            <a href="#" class="cta-link cta-link-darker" id="">Shop now</a>
+            <a href="/Store" class="cta-link cta-link-darker" id="">Shop now</a>
             {/* <!-- <a href="#" class="cta-link" id="">Buy</a> --> */}
         </div>
     </div>
@@ -60,8 +60,8 @@ const Home = () => {
                 <h3 class="collection-title-word"></h3>
             </div>
             <div class="cta">
-                <a href="#" class="cta-link cta-link-darker" id="">Learn more</a>
-                <a href="#" class="cta-link cta-link-darker" id="">Buy</a>
+                <a href="/Store" class="cta-link cta-link-darker" id="">Learn more</a>
+                <a href="/Store" class="cta-link cta-link-darker" id="">Buy</a>
             </div>
         </div>
         <div class="collection-module macbook-pro-13">
@@ -70,8 +70,8 @@ const Home = () => {
                 <h3 class="collection-title-word"></h3>
             </div>            
             <div class="cta">
-                <a href="#" class="cta-link cta-link-darker" id="">Learn more</a>
-                <a href="#" class="cta-link cta-link-darker" id="">Buy</a>
+                <a href="/Store" class="cta-link cta-link-darker" id="">Learn more</a>
+                <a href="/Store" class="cta-link cta-link-darker" id="">Buy</a>
             </div>
         </div>
     </div>
@@ -83,8 +83,8 @@ const Home = () => {
                 <p class="title-sub-heading">It’s our largest display yet.</p>
             </div>
             <div class="cta">
-                <a href="#" class="cta-link cta-link-darker" id="">Learn more</a>
-                <a href="#" class="cta-link cta-link-darker" id="">Buy</a>
+                <a href="/Store" class="cta-link cta-link-darker" id="">Learn more</a>
+                <a href="/Store" class="cta-link cta-link-darker" id="">Buy</a>
             </div>
         </div>
         <div class="collection-module ipad-air">
@@ -93,8 +93,8 @@ const Home = () => {
                 <p class="title-sub-heading">Light. Bright. Full of might.</p>
             </div>            
             <div class="cta">
-                <a href="#" class="cta-link cta-link-darker" id="">Learn more</a>
-                <a href="#" class="cta-link cta-link-darker" id="">Buy</a>
+                <a href="/Store" class="cta-link cta-link-darker" id="">Learn more</a>
+                <a href="/Store" class="cta-link cta-link-darker" id="">Buy</a>
             </div>
         </div>
     </div>

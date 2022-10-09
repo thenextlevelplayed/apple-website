@@ -12,12 +12,12 @@ const Bag_empty = () =>{
                     <div class="row">
                         <div class="form-btn">
                             <div class="btn sign-in">
-                                <a href="sign_in.html">Sign In</a>
+                                <a href="/sign-in">Sign In</a>
                             </div>
                         </div>
                         <div class="form-btn">
                             <div class="btn store">
-                                <a href="store.html">Continue Shopping</a>
+                                <a href="/store">Continue Shopping</a>
                             </div>
                         </div>
                     </div>                

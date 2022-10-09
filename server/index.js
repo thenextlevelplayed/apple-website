@@ -4,6 +4,8 @@ const cors = require('cors')
 const app = express()
 const bcrypt = require("bcrypt"); // 密碼加密
 const member_info_model = require("../server/modules/member")
+const item = require("../server/modules/items")
+
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const jwt_decode = require('jwt-decode');
@@ -60,6 +62,15 @@ app.post("/register", async (req,res) =>{
         password:password,
         phonezone:phonezone,
         phonenumber:phone
+        // cartList:[{
+        //     itemId:'123',
+        //     itemName:'123',
+        //     salePrice:'123',
+        //     checked:'123',
+        //     itemNum:123,
+
+            
+        // }]
     })
 
     // console.log(member_info.firstname,member_info.countryregion,member_info.password)
@@ -375,6 +386,242 @@ app.put('/updatePhone', async (req,res)=>{
         console.log('err',err)
     }
 })
+
+//show item
+app.get('/item',(req,res)=>{
+    item.find({}, function (err, item) {
+        return res.status(200).json({
+            success: true,
+            message: 'iteminfo',
+            data : item
+        })
+        })
+    });
+
+// get cart item amd store it
+app.post('/addCart',async (req,res)=>{
+    // console.log(req.body.itemId) //_id
+    // console.log(req.body.quantity) //itemNum
+    // console.log(req.body.email) //itemNum
+    const email=req.body.email
+    const itemId = req.body.itemId
+
+
+    //store cart item into memberinfo
+    //memberinfo
+    const member_Info = member_info_model.findOne({email:email},(error,memberInfo)=>{
+        if(error){
+            res.json({
+                status:1,
+                message:error.message
+            });
+        }else{
+            console.log("memberInfo:"+memberInfo)
+            if(memberInfo){
+                console.log(memberInfo.firstname)
+                var inCart = false;
+                memberInfo.cartList.forEach(function(item){
+                    if (item._id==req.body.itemId){
+                        inCart = true;
+                        item.itemNum++;
+                        item.checked= "false";
+                        memberInfo.save(function (err2,doc2){
+                            if(err2) {
+                                res.json({
+                                    status:"1",
+                                    msg:err2.message
+                                })
+                            }else{
+                                res.json({
+                                    status:'0',
+                                    msg:'',
+                                    result:'suc'
+                                })
+                        }})
+                        return('update items number')
+                    }                    
+                });
+                // not in the cart
+                if(!inCart){
+                    item.findOne({_id:itemId},(error,addCart)=>{
+                        if(error){
+                            res.json({
+                                status:1,
+                                message:error.message
+                            });
+                        }else{
+                            console.log('addCart',addCart);
+                            // console.log(addCart.checked);
+                            addCart.checked="false";
+                            addCart.itemNum = 1;
+                            addCart._id=itemId;
+                            memberInfo.cartList.push(addCart);
+                            console.log(memberInfo.cartList);
+                            memberInfo.save(function (err2,doc2){
+                                if(err2) {
+                                    res.json({
+                                        status:"1",
+                                        msg:err2.message
+                                    })
+                                }else{
+                                    res.json({
+                                        status:'0',
+                                        msg:'',
+                                        result:'suc'
+                                    })
+                            }})
+                            // save(memberInfo,res)
+                            return('add new cartList')
+                        }
+                    })
+                }
+            }
+        }
+    })
+    // const memberID =await member_info_model.find({email:email}).exec();
+    // console.log(memberID[0]._id,'memberID:id')
+
+})
+
+// get cartlist info 
+app.get('/getCart',async (req,res)=>{
+    //add auth
+    let token =req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+    // console.log(token)
+    if(token){
+        await jwt.verify(token,config.jwtKey),(err,decoded)=>{
+            if (err){
+                console.log('500')
+                return res.status(500).json({
+                    success:false,
+                    message:'token 認證錯誤'
+                });
+            } else{
+                console.log('200')
+                res.send('getinfo')
+
+                // return req.body.email
+            }
+        }
+    } else{
+        console.log('403')
+        return res.status(403).json({
+            success:false,
+            message:'沒有提供 token 做驗證'
+        });
+    }
+    var decoded = jwt_decode(token);
+    // console.log('email:',decoded.email)
+    const email = decoded.email
+    await member_info_model.aggregate([
+        {$match:{email:email}},
+        {$lookup:{from:'items', localField:'cartList._id',foreignField:'_id',as:'useritemdata'}}
+    ]).exec((err,doc)=>{
+        if(doc){
+            console.log(doc[0])
+            return res.json({
+                status:0,
+                msg:'',
+                result:{
+                    list:doc[0] // send cartlist info
+                }
+            })  
+        }else{
+            return res.json({
+                status:1,
+                msg:'failed to look up cartList'
+            })
+        }
+        // test array data
+        // if(err){
+        //     console.log(err)
+        // }else{
+        //     console.log(doc[0].cartList[0])
+        //     console.log(doc[0].useritemdata[0])
+        //     console.log(doc.useritemdata)
+
+        // }
+    });
+    // console.log()
+    // member_info_model.findOne({email:email},function(err,doc){
+    //     if(doc){
+    //         return res.json({
+    //             status:0,
+    //             msg:'',
+    //             result:{
+    //                 list:doc.cartList // send cartlist info
+    //             }
+    //         })  
+    //     }else{
+    //         return res.json({
+    //             status:1,
+    //             msg:'failed to look up cartList'
+    //         })
+    //     }
+    // })
+
+
+    })
+
+// update cartlist info 
+app.put('/updateCart',async(res,req)=>{
+    //add auth
+    let token =req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+    // console.log(token)
+    if(token){
+        await jwt.verify(token,config.jwtKey),(err,decoded)=>{
+            if (err){
+                console.log('500')
+                return res.status(500).json({
+                    success:false,
+                    message:'token 認證錯誤'
+                });
+            } else{
+                console.log('200')
+                res.send('getinfo')
+
+                // return req.body.email
+            }
+        }
+    } else{
+        console.log('403')
+        return res.status(403).json({
+            success:false,
+            message:'沒有提供 token 做驗證'
+        });
+    }
+    var decoded = jwt_decode(token);
+    // console.log('email:',decoded.email)
+    const newItemNum = req.body.newItemNum
+    const id = req.body.id;
+    console.log(req.body.itemName)
+    console.log(req.body.id)
+    console.log(req.body.newItemNum)
+
+    try{
+        await member_info_model.findByIdAndUpdate(id,
+            {                
+                cartList:{
+                    $elemMatch:{
+                        itemName:req.body.itemName,
+                        itemNum:newItemNum
+                    }
+                }
+        }, function (err, docs) {
+            if (err){ 
+                console.log(err)
+                res.send('err') 
+            } 
+            else{ 
+                console.log("Updated User:", docs); 
+                res.send('docs') 
+            } 
+         })
+    }catch (err){
+        console.log('err',err)
+    }
+})
+
 
 
 

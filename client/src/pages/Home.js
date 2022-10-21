@@ -122,7 +122,7 @@ const Home = () => {
         </div>
     </div>
    </section>
-   <section className="carousel-module">
+   {/* <section className="carousel-module">
     <div className="item-module">
         <div className="item item-1">
             <a href="#item-1">
@@ -310,7 +310,7 @@ const Home = () => {
         </div>
     </div>
 
-    {/* <!-- 上一頁 下一頁 --> */}
+    
     <div className="paddlenav">
         <ul>
             <li className="previous">
@@ -321,7 +321,7 @@ const Home = () => {
             </li>
         </ul>
     </div>
-    {/* <!-- 點點 --> */}
+    
     <div className="dot-wrapper">
         <ul className="dotnav-items">
            <li role="presentation">
@@ -381,7 +381,7 @@ const Home = () => {
            </li>
         </ul>
     </div>
-   </section>
+   </section> */}
    <Footer />
 
 </body>

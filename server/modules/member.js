@@ -46,9 +46,27 @@ const MemberSchema = new mongoose.Schema({
           checked:{type:String,required:false}, // 是否選中
  
           itemNum:{type:Number,required:false}, // 商品數量
+
+          image:{type:String,required:false}, // 商品數量
+
  
  
      }],
+
+    historyList:[{ // 購物車列表
+
+        itemId: {type:String,required:false}, // 商品Id
+
+        itemName: {type:String,required:false}, // 商品名稱
+
+        salePrice:{type:Number,required:false}, // 商品價格
+
+        checked:{type:String,required:false}, // 是否選中
+
+        itemNum:{type:Number,required:false}, // 商品數量
+
+        image:{type:String,required:false}, // 商品數量
+   }]
     
     })
 

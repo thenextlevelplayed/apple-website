@@ -91,7 +91,7 @@ html{
     margin-right: 15px;
 }
 
-.mi .btn{
+.btn-empty{
     cursor: pointer;
     text-align: center;
     white-space: nowrap;

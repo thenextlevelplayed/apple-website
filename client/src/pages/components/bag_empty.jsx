@@ -4,42 +4,42 @@ const Bag_empty = () =>{
     return(
         <>
         {/* <!-- when bag is empty --> */}
-        <div class="bag-empty">
-            <div class="empty-modelus">
-                <div class="empty-title">
+        <div className="bag-empty">
+            <div className="empty-modelus">
+                <div className="empty-title">
                     <h1>Your bag is empty.</h1>
                     <p>Sign in to see if you have any saved items. Or continue shopping.</p>
-                    <div class="row">
-                        <div class="form-btn">
-                            <div class="btn sign-in">
+                    <div className="row">
+                        <div className="form-btn">
+                            <div className="btn-empty sign-in">
                                 <a href="/sign-in">Sign In</a>
                             </div>
                         </div>
-                        <div class="form-btn">
-                            <div class="btn store">
+                        <div className="form-btn">
+                            <div className="btn-empty store">
                                 <a href="/store">Continue Shopping</a>
                             </div>
                         </div>
                     </div>                
                 </div>
 
-                <div class="aidcaption">
-                    <div class="aidcaption-modelus">
+                <div className="aidcaption">
+                    <div className="aidcaption-modelus">
                         Need some help? Call 1‑800‑MY‑APPLE.
                     </div>
                 </div>
 
-                <div class="shop">
-                    <div class="shop-modelus">
-                        <div class="shop-icon">
-                            <div class="shop-text">
-                                <div class="shop-title">
+                <div className="shop">
+                    <div className="shop-modelus">
+                        <div className="shop-icon">
+                            <div className="shop-text">
+                                <div className="shop-title">
                                     <h2>New Arrivals</h2>
                                 </div>
-                                <div class="shop-content">
+                                <div className="shop-content">
                                     Check out the latest accessories.
                                 </div>
-                                <div class="shop-store-url">
+                                <div className="shop-store-url">
                                     <a href="/Store"><span>Shop</span></a>  
                                 </div>
                                 

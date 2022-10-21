@@ -450,13 +450,17 @@ app.post('/addCart',async (req,res)=>{
                                 message:error.message
                             });
                         }else{
-                            console.log('addCart',addCart);
+                            // console.log('addCart.image'+addCart.image)
                             // console.log(addCart.checked);
+                            // console.log(addCart.salePrice);
+
                             addCart.checked="false";
                             addCart.itemNum = 1;
                             addCart._id=itemId;
+                            // console.log('addCartInfo'+addCart)
+                            // console.log('addCart.image'+addCart.image)
                             memberInfo.cartList.push(addCart);
-                            console.log(memberInfo.cartList);
+                            // console.log(memberInfo.cartList);
                             memberInfo.save(function (err2,doc2){
                                 if(err2) {
                                     res.json({
@@ -464,6 +468,7 @@ app.post('/addCart',async (req,res)=>{
                                         msg:err2.message
                                     })
                                 }else{
+                                    // console.log('doc2'+doc2)
                                     res.json({
                                         status:'0',
                                         msg:'',
@@ -514,11 +519,13 @@ app.get('/getCart',async (req,res)=>{
     // console.log('email:',decoded.email)
     const email = decoded.email
     await member_info_model.aggregate([
+        // {$sortArray:{input:"$cartList",sortBy:{itemId:1}}},
         {$match:{email:email}},
         {$lookup:{from:'items', localField:'cartList._id',foreignField:'_id',as:'useritemdata'}}
+        
     ]).exec((err,doc)=>{
         if(doc){
-            console.log(doc[0])
+            // console.log('doc[0]:',doc[0])
             return res.json({
                 status:0,
                 msg:'',
@@ -564,62 +571,153 @@ app.get('/getCart',async (req,res)=>{
     })
 
 // update cartlist info 
-app.put('/updateCart',async(res,req)=>{
-    //add auth
-    let token =req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
-    // console.log(token)
-    if(token){
-        await jwt.verify(token,config.jwtKey),(err,decoded)=>{
-            if (err){
-                console.log('500')
-                return res.status(500).json({
-                    success:false,
-                    message:'token 認證錯誤'
-                });
-            } else{
-                console.log('200')
-                res.send('getinfo')
-
-                // return req.body.email
-            }
-        }
-    } else{
-        console.log('403')
-        return res.status(403).json({
-            success:false,
-            message:'沒有提供 token 做驗證'
-        });
-    }
-    var decoded = jwt_decode(token);
-    // console.log('email:',decoded.email)
-    const newItemNum = req.body.newItemNum
-    const id = req.body.id;
-    console.log(req.body.itemName)
+app.put('/updateCart',async(req,res)=>{
+    // let token =req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization'];
+    // console.log(req.body.id)
     console.log(req.body.id)
-    console.log(req.body.newItemNum)
+    const id = req.body.id
+    console.log(req.body.itemName)
+    const itemName = req.body.itemName
+    const newItemNum=req.body.itemNum
+    console.log(req.body.itemNum)
+    console.log('newItemNum:',newItemNum)
 
-    try{
-        await member_info_model.findByIdAndUpdate(id,
-            {                
-                cartList:{
-                    $elemMatch:{
-                        itemName:req.body.itemName,
-                        itemNum:newItemNum
+    await member_info_model.updateOne(
+        {_id:id,"cartList.itemName":itemName},
+            {
+                $set:
+                    {
+                        "cartList.$.itemNum":newItemNum
                     }
+            },
+            {
+                new: true
+            }
+    ), function (err, docs) {
+        if (err){ 
+            console.log(err)
+            res.send('err') 
+        } 
+        else{ 
+            console.log("Updated User:", docs); 
+            res.send('docs') 
+        } 
+     }
+
+    
+
+    // try{
+    //     await member_info_model.findByIdAndUpdate(id,
+    //         {                
+    //             cartList:{
+    //                 $elemMatch:{
+    //                     itemName:req.body.itemName,
+    //                     itemNum:newItemNum
+    //                 }
+    //             }
+    //     }, function (err, docs) {
+    //         if (err){ 
+    //             console.log(err)
+    //             res.send('err') 
+    //         } 
+    //         else{ 
+    //             console.log("Updated User:", docs); 
+    //             res.send('docs') 
+    //         } 
+    //      })
+    // }catch (err){
+    //     console.log('err',err)
+    // }
+})
+// delete cartList content
+app.delete('/deleteCart/:id',async(req,res)=>{
+    const memberInfoId = req.body.memberInfoId;
+    const id =req.params.id; 
+    console.log(memberInfoId)
+    console.log(id)
+    await member_info_model.updateOne(
+        {_id:memberInfoId},
+        {
+            $pull:
+                {
+                    cartList:
+                        {
+                            _id:id,
+                            checked:'false'
+                        }
                 }
-        }, function (err, docs) {
-            if (err){ 
-                console.log(err)
-                res.send('err') 
-            } 
-            else{ 
-                console.log("Updated User:", docs); 
-                res.send('docs') 
-            } 
-         })
-    }catch (err){
-        console.log('err',err)
+        }
+    )
+    res.send('delete!')
+    
+
+})
+
+//payment
+app.post('/payCart',async (req,res)=>{
+    console.log(req.body.id)
+    member_info_model.findOne({_id:req.body.id},(error,memberInfo)=>{
+        // console.log(memberInfo)
+        if(error){
+            res.json({
+                status:1,
+                message:error.message
+            });
+        }else{
+            // delete itemNum
+            for(let i =0; i<memberInfo.cartList.length ; i++){
+                item.findOne({_id:memberInfo.cartList[i]._id},(error,iteminfo)=>{
+                    console.log("iteminfo:",iteminfo)
+                    console.log('memberInfo.cartList[i].itemNum:',memberInfo.cartList)
+                    // iteminfo.itemNum = (iteminfo.itemNum-memberInfo.cartList[0].itemNum)
+                    console.log((iteminfo.itemNum-memberInfo.cartList[i].itemNum))
+                    iteminfo.itemNum = iteminfo.itemNum-memberInfo.cartList[i].itemNum
+                    if(iteminfo.itemNum>0){
+                        iteminfo.save()
+                    }else{
+                        console.log('out of stack!')
+                    }
+                    
+                })
+                memberInfo.historyList.push(memberInfo.cartList[i]);
+            }
+
+            
+
+            // for(let i =0; i<memberInfo.cartList.length ; i++){
+            //     memberInfo.cartList[i].checked = "true"
+            //     memberInfo.historyList.push(memberInfo.cartList[i]);
+            // }
+            
+        }
+
+        // memberInfo.cartList = [];
+
+        memberInfo.save(function (err2,doc2){
+            if(err2) {
+                res.json({
+                    status:"1",
+                    msg:err2.message
+                })
+            }else{
+                console.log("doc2"+doc2)
+                res.json({
+                    status:'0',
+                    msg:'',
+                    result:'suc'
+                })
+                return('add new historyList')
+        }
+        })
     }
+    )
+    // delete cartList
+    member_info_model.findOne({_id:req.body.id},(error,memberInfo)=>{
+        memberInfo.cartList = []
+        memberInfo.save()
+    })
+
+
 })
 
 

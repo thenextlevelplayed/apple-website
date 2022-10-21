@@ -22,8 +22,11 @@ const ItemSchema = new mongoose.Schema({
         // lastActiveAt: Date
     },
     itemNum:{
-        type:String
+        type:Number
         // required:true
+    },
+    image:{
+        type:String
     }
 });
 

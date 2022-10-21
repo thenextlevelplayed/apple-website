@@ -170,7 +170,7 @@ export default function App() {
                             before trade‑in Footnote *
                         </span>
                     </div>
-                    <button class="buy" onClick={(e)=>addToCart(data[0]._id,1)}>Buy</button>
+                    <button class="buy" onClick={(e)=>addToCart(data[2]._id,1)}>Buy</button>
                 </div>
         </SwiperSlide>
         <SwiperSlide>
@@ -245,7 +245,7 @@ export default function App() {
                             From $1199 or $99.91/mo. for 12 mo.
                         </span>
                     </div>
-                    <button class="buy"onClick={(e)=>addToCart(data[2]._id,1)}>Buy</button>
+                    <button class="buy"onClick={(e)=>addToCart(data[3]._id,1)}>Buy</button>
                 </div>
         </SwiperSlide>
         <SwiperSlide className="macbookpro13">
@@ -272,7 +272,7 @@ export default function App() {
                   From $1299 or $108.25/mo. for 12 mo.
               </span>
           </div>
-          <button class="buy"onClick={(e)=>addToCart(data[3]._id,1)}>Buy</button>
+          <button class="buy"onClick={(e)=>addToCart(data[4]._id,1)}>Buy</button>
         </div>
         </SwiperSlide>
         <SwiperSlide className="iPad-Air">
@@ -311,7 +311,7 @@ export default function App() {
                 </span>
                 <br />
             </div>
-            <button class="buy"onClick={(e)=>addToCart(data[4]._id,1)}>Buy</button>
+            <button class="buy"onClick={(e)=>addToCart(data[0]._id,1)}>Buy</button>
           </div>
         </SwiperSlide>
         <SwiperSlide className="apple-watch-series-7">
